@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE generatorConfiguration
+                PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+<properties resource="config.properties"></properties>
+<classPathEntry location="${dbconfig.sqlServer.driverLocation}" />
+
+<context id="context1" targetRuntime="MyBatis3">
+
+    <!-- 是否生成注释 去除自动生成的注释-->
+    <commentGenerator>
+        <property name="javaFileEncoding" value="UTF-8" />
+        <property name="suppressAllComments" value="true" />
+        <property name="suppressDate" value="true" />
+    </commentGenerator>
+
+    <!-- 数据库连接配置 -->
+    <jdbcConnection driverClass="${dbconfig.sqlServer.driverClasss}"
+                    connectionURL="${dbconfig.sqlServer.ssmDemo.read.jdbcUrl}"
+                    userId="${dbconfig.sqlServer.username}"
+                    password="${dbconfig.sqlServer.password}" />
+
+    <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+    <javaTypeResolver>
+        <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <!--配置生成的实体包
+        targetPackage：生成的实体包位置，默认存放在src目录下
+        targetProject：目标工程名
+     -->
+    <javaModelGenerator targetPackage="${domain.namespace}.domain"
+                        targetProject="src/main/java" />
+
+    <!--对应的mapper.xml文件  -->
+    <sqlMapGenerator targetPackage="${domain.namespace}.mapper"
+                     targetProject="src/main/java">
+        <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+
+    <!--生成Dao类存放位置-->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="${domain.namespace}.mapper"
+                         targetProject="src/main/java">
+        <property name="enableSubPackages" value="false"/>
+    </javaClientGenerator>
+
+    <!--生成对应表及类名-->
+    <!-- 配置表
+        schema：不用填写
+        tableName: 表名
+        enableCountByExample、enableSelectByExample、enableDeleteByExample、enableUpdateByExample、selectByExampleQueryId：
+        去除自动生成的例子
+    -->
+    <table tableName="HistoryData" domainObjectName="HistoryData"
+           enableCountByExample="true" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false"
+           selectByExampleQueryId="false"></table>
+
+
+    <!--    <table schema="" tableName="UzaiCountry" enableCountByExample="false" enableSelectByExample="false"-->
+<!--           enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+<!--    </table>-->
+<!--    <table tableName="c_user_info" domainObjectName="UserInfo" />-->
+
+</context>
+</generatorConfiguration>

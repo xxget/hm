@@ -1,0 +1,19 @@
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:sqlserver://10.106.10.117:1433;databaseName=tyjlz
+    username: "sa"
+    password: "@Dmin123"
+  application:
+    name: microservice-provider
+
+
