@@ -1,6 +1,7 @@
 package com.zdh.hm.fthfldtl.service;
 
 import com.zdh.hm.fthfldtl.entity.Fthfldtl;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author xxg
  * @since 2021-02-23 11:14:12
  */
+@Service
 public interface FthfldtlService {
 
     /**

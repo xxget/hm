@@ -2,6 +2,8 @@ package com.zdh.hm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 /**
  * @Author(开发者) Xi
  * @E-mail(邮箱) xxget@live.com
@@ -12,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version(版本) 1.0.0
 **/
 @SpringBootApplication
+// 开启任务调度
+@EnableScheduling
 public class HmApplication {
 
     public static void main(String[] args) {
