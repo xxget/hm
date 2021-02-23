@@ -54,10 +54,7 @@
         enableCountByExample、enableSelectByExample、enableDeleteByExample、enableUpdateByExample、selectByExampleQueryId：
         去除自动生成的例子
     -->
-    <table tableName="HistoryData" domainObjectName="HistoryData"
-           enableCountByExample="true" enableUpdateByExample="false"
-           enableDeleteByExample="false" enableSelectByExample="false"
-           selectByExampleQueryId="false"></table>
+    <table tableName="HistoryData" domainObjectName="HistoryData"></table>
 
 
     <!--    <table schema="" tableName="UzaiCountry" enableCountByExample="false" enableSelectByExample="false"-->

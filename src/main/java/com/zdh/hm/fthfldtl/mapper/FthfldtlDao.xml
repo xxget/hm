@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdh.hm.fthfldtl.dao.FthfldtlDao">
+
+    <resultMap type="com.zdh.hm.fthfldtl.entity.Fthfldtl" id="FthfldtlMap">
+        <result property="colltime" column="colltime" jdbcType="TIMESTAMP"/>
+        <result property="porttype" column="porttype" jdbcType="VARCHAR"/>
+        <result property="portid" column="portid" jdbcType="VARCHAR"/>
+        <result property="devaddr" column="devaddr" jdbcType="INTEGER"/>
+        <result property="density" column="density" jdbcType="VARCHAR"/>
+        <result property="tempretu" column="tempretu" jdbcType="VARCHAR"/>
+        <result property="pressure" column="pressure" jdbcType="VARCHAR"/>
+        <result property="diffpres" column="diffpres" jdbcType="VARCHAR"/>
+        <result property="flow" column="flow" jdbcType="VARCHAR"/>
+        <result property="sumflow" column="sumflow" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="retrycnt" column="retrycnt" jdbcType="INTEGER"/>
+        <result property="prest" column="PREST" jdbcType="VARCHAR"/>
+        <result property="diffpt" column="DIFFPT" jdbcType="VARCHAR"/>
+        <result property="resetinfo" column="resetinfo" jdbcType="VARCHAR"/>
+        <result property="warninfo" column="warninfo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FthfldtlMap">
+        select colltime,
+               porttype,
+               portid,
+               devaddr,
+               density,
+               tempretu,
+               pressure,
+               diffpres,
+               flow,
+               sumflow,
+               userid,
+               status,
+               retrycnt,
+               PREST,
+               DIFFPT,
+               resetinfo,
+               warninfo
+        from pd.fthfldtl
+        where colltime = #{colltime}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="FthfldtlMap">
+        select colltime,
+               porttype,
+               portid,
+               devaddr,
+               density,
+               tempretu,
+               pressure,
+               diffpres,
+               flow,
+               sumflow,
+               userid,
+               status,
+               retrycnt,
+               PREST,
+               DIFFPT,
+               resetinfo,
+               warninfo
+        from pd.fthfldtl
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FthfldtlMap">
+        select
+        colltime, porttype, portid, devaddr, density, tempretu, pressure, diffpres, flow, sumflow, userid, status,
+        retrycnt, PREST, DIFFPT, resetinfo, warninfo
+        from pd.fthfldtl
+        <where>
+            <if test="colltime != null">
+                and colltime = #{colltime}
+            </if>
+            <if test="porttype != null and porttype != ''">
+                and porttype = #{porttype}
+            </if>
+            <if test="portid != null and portid != ''">
+                and portid = #{portid}
+            </if>
+            <if test="devaddr != null">
+                and devaddr = #{devaddr}
+            </if>
+            <if test="density != null">
+                and density = #{density}
+            </if>
+            <if test="tempretu != null">
+                and tempretu = #{tempretu}
+            </if>
+            <if test="pressure != null">
+                and pressure = #{pressure}
+            </if>
+            <if test="diffpres != null">
+                and diffpres = #{diffpres}
+            </if>
+            <if test="flow != null">
+                and flow = #{flow}
+            </if>
+            <if test="sumflow != null">
+                and sumflow = #{sumflow}
+            </if>
+            <if test="userid != null and userid != ''">
+                and userid = #{userid}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="retrycnt != null">
+                and retrycnt = #{retrycnt}
+            </if>
+            <if test="prest != null">
+                and PREST = #{prest}
+            </if>
+            <if test="diffpt != null">
+                and DIFFPT = #{diffpt}
+            </if>
+            <if test="resetinfo != null">
+                and resetinfo = #{resetinfo}
+            </if>
+            <if test="warninfo != null">
+                and warninfo = #{warninfo}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="colltime" useGeneratedKeys="true">
+        insert into pd.fthfldtl(porttype, density, tempretu, pressure, diffpres, flow, sumflow, userid, status,
+                                retrycnt, PREST, DIFFPT, resetinfo, warninfo)
+        values (#{porttype}, #{density}, #{tempretu}, #{pressure}, #{diffpres}, #{flow}, #{sumflow}, #{userid},
+                #{status}, #{retrycnt}, #{prest}, #{diffpt}, #{resetinfo}, #{warninfo})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="colltime" useGeneratedKeys="true">
+        insert into pd.fthfldtl(porttype, density, tempretu, pressure, diffpres, flow, sumflow, userid, status,
+        retrycnt, PREST, DIFFPT, resetinfo, warninfo)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.porttype}, #{entity.density}, #{entity.tempretu}, #{entity.pressure}, #{entity.diffpres},
+            #{entity.flow}, #{entity.sumflow}, #{entity.userid}, #{entity.status}, #{entity.retrycnt}, #{entity.prest},
+            #{entity.diffpt}, #{entity.resetinfo}, #{entity.warninfo})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="colltime" useGeneratedKeys="true">
+        insert into pd.fthfldtl(porttype, density, tempretu, pressure, diffpres, flow, sumflow, userid, status,
+        retrycnt, PREST, DIFFPT, resetinfo, warninfo)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.porttype}, #{entity.density}, #{entity.tempretu}, #{entity.pressure}, #{entity.diffpres},
+            #{entity.flow}, #{entity.sumflow}, #{entity.userid}, #{entity.status}, #{entity.retrycnt}, #{entity.prest},
+            #{entity.diffpt}, #{entity.resetinfo}, #{entity.warninfo})
+        </foreach>
+        on duplicate key update
+        porttype = values(porttype) , density = values(density) , tempretu = values(tempretu) , pressure =
+        values(pressure) , diffpres = values(diffpres) , flow = values(flow) , sumflow = values(sumflow) , userid =
+        values(userid) , status = values(status) , retrycnt = values(retrycnt) , PREST = values(PREST) , DIFFPT =
+        values(DIFFPT) , resetinfo = values(resetinfo) , warninfo = values(warninfo)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pd.fthfldtl
+        <set>
+            <if test="porttype != null and porttype != ''">
+                porttype = #{porttype},
+            </if>
+            <if test="density != null">
+                density = #{density},
+            </if>
+            <if test="tempretu != null">
+                tempretu = #{tempretu},
+            </if>
+            <if test="pressure != null">
+                pressure = #{pressure},
+            </if>
+            <if test="diffpres != null">
+                diffpres = #{diffpres},
+            </if>
+            <if test="flow != null">
+                flow = #{flow},
+            </if>
+            <if test="sumflow != null">
+                sumflow = #{sumflow},
+            </if>
+            <if test="userid != null and userid != ''">
+                userid = #{userid},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="retrycnt != null">
+                retrycnt = #{retrycnt},
+            </if>
+            <if test="prest != null">
+                PREST = #{prest},
+            </if>
+            <if test="diffpt != null">
+                DIFFPT = #{diffpt},
+            </if>
+            <if test="resetinfo != null">
+                resetinfo = #{resetinfo},
+            </if>
+            <if test="warninfo != null">
+                warninfo = #{warninfo},
+            </if>
+        </set>
+        where colltime = #{colltime}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from pd.fthfldtl
+        where colltime = #{colltime}
+    </delete>
+
+</mapper>
+
