@@ -13,7 +13,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @return(返回)
  * @Version(版本) 1.0.0
 **/
-@SpringBootApplication
+//@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"com.zdh.hm"})
 // 开启任务调度
 @EnableScheduling
 

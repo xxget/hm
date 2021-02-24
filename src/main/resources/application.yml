@@ -17,7 +17,7 @@ spring:
     url: jdbc:sqlserver://server.natappfree.cc:34325;databaseName=pdmqnew
     username: "sa"
     password: "@Dmin123"
-  application:
-    name: microservice-provider
+#  application:
+#    name: microservice-provider
 
 

@@ -12,7 +12,6 @@ import java.util.List;
  * @author xxg
  * @since 2021-02-23 11:14:12
  */
-@Service
 public interface FthfldtlService {
 
     /**

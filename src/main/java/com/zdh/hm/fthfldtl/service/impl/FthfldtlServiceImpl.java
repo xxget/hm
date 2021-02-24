@@ -3,6 +3,7 @@ package com.zdh.hm.fthfldtl.service.impl;
 import com.zdh.hm.fthfldtl.entity.Fthfldtl;
 import com.zdh.hm.fthfldtl.dao.FthfldtlDao;
 import com.zdh.hm.fthfldtl.service.FthfldtlService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Service("fthfldtlService")
 public class FthfldtlServiceImpl implements FthfldtlService {
+
     @Resource
     private FthfldtlDao fthfldtlDao;
 
