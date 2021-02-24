@@ -1,6 +1,7 @@
 package com.zdh.hm.fthfldtl.dao;
 
 import com.zdh.hm.fthfldtl.entity.Fthfldtl;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.List;
  * @author xxg
  * @since 2021-02-23 11:14:11
  */
+@Mapper
 public interface FthfldtlDao {
 
     /**

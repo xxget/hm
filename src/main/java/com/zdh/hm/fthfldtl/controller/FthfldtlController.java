@@ -14,7 +14,7 @@ import java.util.Date;
  * @since 2021-02-23 11:14:12
  */
 @RestController
-@RequestMapping("fthfldtl")
+@RequestMapping("/fthfldtl")
 public class FthfldtlController {
     /**
      * 服务对象
