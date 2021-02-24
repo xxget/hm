@@ -21,6 +21,82 @@
         <result property="resetinfo" column="resetinfo" jdbcType="VARCHAR"/>
         <result property="warninfo" column="warninfo" jdbcType="VARCHAR"/>
     </resultMap>
+    <!--在原有表中增加fthfldev表中的字段-->
+    <resultMap type="com.zdh.hm.fthfldtl.entity.FthfldtlInfo" id="FthfldtlMapAll">
+        <result property="colltime" column="colltime" jdbcType="TIMESTAMP"/>
+        <result property="porttype" column="porttype" jdbcType="VARCHAR"/>
+        <result property="portid" column="portid" jdbcType="VARCHAR"/>
+        <result property="devaddr" column="devaddr" jdbcType="INTEGER"/>
+        <result property="density" column="density" jdbcType="VARCHAR"/>
+        <result property="tempretu" column="tempretu" jdbcType="VARCHAR"/>
+        <result property="pressure" column="pressure" jdbcType="VARCHAR"/>
+        <result property="diffpres" column="diffpres" jdbcType="VARCHAR"/>
+        <result property="flow" column="flow" jdbcType="VARCHAR"/>
+        <result property="sumflow" column="sumflow" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="retrycnt" column="retrycnt" jdbcType="INTEGER"/>
+        <result property="prest" column="PREST" jdbcType="VARCHAR"/>
+        <result property="diffpt" column="DIFFPT" jdbcType="VARCHAR"/>
+        <result property="resetinfo" column="resetinfo" jdbcType="VARCHAR"/>
+        <result property="warninfo" column="warninfo" jdbcType="VARCHAR"/>
+        <result property="devname" column="devname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--根据时间条件查询所有记录详细信息-->
+    <select id="queryAllTime" resultMap="FthfldtlMapAll">
+        SELECT
+        b.devname,
+        a.colltime,
+        a.porttype,
+        a.portid,
+        a.devaddr,
+        a.density,
+        a.tempretu,
+        a.pressure,
+        a.diffpres,
+        a.flow,
+        a.sumflow,
+        a.userid,
+        a.status,
+        a.retrycnt,
+        a.PREST,
+        a.DIFFPT,
+        a.resetinfo,
+        a.warninfo
+        FROM
+        pd.fthfldtl a
+        LEFT JOIN pd.fthfldev b ON a.portid = b.portid
+        <where>
+            <if test="colltime != null">
+                and colltime = #{colltime}
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有记录详细信息-->
+    <select id="queryByIdALL" resultMap="FthfldtlMapAll">
+        SELECT b.devname,
+               a.colltime,
+               a.porttype,
+               a.portid,
+               a.devaddr,
+               a.density,
+               a.tempretu,
+               a.pressure,
+               diffpres,
+               a.flow,
+               a.sumflow,
+               a.userid,
+               a.status,
+               a.retrycnt,
+               a.PREST,
+               a.DIFFPT,
+               a.resetinfo,
+               a.warninfo
+        FROM pd.fthfldtl a
+                 LEFT JOIN pd.fthfldev b ON a.portid = b.portid
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="FthfldtlMap">

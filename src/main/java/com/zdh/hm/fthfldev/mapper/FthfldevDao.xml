@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdh.hm.fthfldev.dao.FthfldevDao">
+
+    <resultMap type="com.zdh.hm.fthfldev.entity.Fthfldev" id="FthfldevMap">
+        <result property="devname" column="devname" jdbcType="VARCHAR"/>
+        <result property="porttype" column="porttype" jdbcType="VARCHAR"/>
+        <result property="devaddr" column="devaddr" jdbcType="INTEGER"/>
+        <result property="colltype" column="colltype" jdbcType="VARCHAR"/>
+        <result property="portid" column="portid" jdbcType="VARCHAR"/>
+        <result property="baudrate" column="baudrate" jdbcType="VARCHAR"/>
+        <result property="fcollect" column="fcollect" jdbcType="VARCHAR"/>
+        <result property="compname" column="compname" jdbcType="VARCHAR"/>
+        <result property="insttime" column="insttime" jdbcType="TIMESTAMP"/>
+        <result property="chktime" column="chktime" jdbcType="TIMESTAMP"/>
+        <result property="collhint" column="collhint" jdbcType="INTEGER"/>
+        <result property="collrint" column="collrint" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="collstat" column="collstat" jdbcType="TIMESTAMP"/>
+        <result property="userid" column="userid" jdbcType="VARCHAR"/>
+        <result property="flowunit" column="flowunit" jdbcType="VARCHAR"/>
+        <result property="sumfunit" column="sumfunit" jdbcType="VARCHAR"/>
+        <result property="diffunit" column="diffunit" jdbcType="VARCHAR"/>
+        <result property="presunit" column="presunit" jdbcType="VARCHAR"/>
+        <result property="tempunit" column="tempunit" jdbcType="VARCHAR"/>
+        <result property="densunit" column="densunit" jdbcType="VARCHAR"/>
+        <result property="flowdot" column="flowdot" jdbcType="INTEGER"/>
+        <result property="sumfdot" column="sumfdot" jdbcType="INTEGER"/>
+        <result property="diffdot" column="diffdot" jdbcType="INTEGER"/>
+        <result property="presdot" column="presdot" jdbcType="INTEGER"/>
+        <result property="tempdot" column="tempdot" jdbcType="INTEGER"/>
+        <result property="densdot" column="densdot" jdbcType="INTEGER"/>
+        <result property="dpzero" column="DPZERO" jdbcType="VARCHAR"/>
+        <result property="pzero" column="PZERO" jdbcType="VARCHAR"/>
+        <result property="dpcut" column="DPCUT" jdbcType="VARCHAR"/>
+        <result property="flowmax" column="FLOWMAX" jdbcType="VARCHAR"/>
+        <result property="flowmin" column="FLOWMIN" jdbcType="VARCHAR"/>
+        <result property="owner" column="owner" jdbcType="VARCHAR"/>
+        <result property="chargeDay" column="charge_day" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FthfldevMap">
+        select devname,
+               porttype,
+               devaddr,
+               colltype,
+               portid,
+               baudrate,
+               fcollect,
+               compname,
+               insttime,
+               chktime,
+               collhint,
+               collrint,
+               status,
+               collstat,
+               userid,
+               flowunit,
+               sumfunit,
+               diffunit,
+               presunit,
+               tempunit,
+               densunit,
+               flowdot,
+               sumfdot,
+               diffdot,
+               presdot,
+               tempdot,
+               densdot,
+               DPZERO,
+               PZERO,
+               DPCUT,
+               FLOWMAX,
+               FLOWMIN,
+               owner,
+               charge_day
+        from pd.fthfldev
+        where devaddr = #{devaddr}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="FthfldevMap">
+        select devname,
+               porttype,
+               devaddr,
+               colltype,
+               portid,
+               baudrate,
+               fcollect,
+               compname,
+               insttime,
+               chktime,
+               collhint,
+               collrint,
+               status,
+               collstat,
+               userid,
+               flowunit,
+               sumfunit,
+               diffunit,
+               presunit,
+               tempunit,
+               densunit,
+               flowdot,
+               sumfdot,
+               diffdot,
+               presdot,
+               tempdot,
+               densdot,
+               DPZERO,
+               PZERO,
+               DPCUT,
+               FLOWMAX,
+               FLOWMIN,
+               owner,
+               charge_day
+        from pd.fthfldev
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FthfldevMap">
+        select
+        devname, porttype, devaddr, colltype, portid, baudrate, fcollect, compname, insttime, chktime, collhint,
+        collrint, status, collstat, userid, flowunit, sumfunit, diffunit, presunit, tempunit, densunit, flowdot,
+        sumfdot, diffdot, presdot, tempdot, densdot, DPZERO, PZERO, DPCUT, FLOWMAX, FLOWMIN, owner, charge_day
+        from pd.fthfldev
+        <where>
+            <if test="devname != null and devname != ''">
+                and devname = #{devname}
+            </if>
+            <if test="porttype != null and porttype != ''">
+                and porttype = #{porttype}
+            </if>
+            <if test="devaddr != null">
+                and devaddr = #{devaddr}
+            </if>
+            <if test="colltype != null and colltype != ''">
+                and colltype = #{colltype}
+            </if>
+            <if test="portid != null and portid != ''">
+                and portid = #{portid}
+            </if>
+            <if test="baudrate != null and baudrate != ''">
+                and baudrate = #{baudrate}
+            </if>
+            <if test="fcollect != null and fcollect != ''">
+                and fcollect = #{fcollect}
+            </if>
+            <if test="compname != null and compname != ''">
+                and compname = #{compname}
+            </if>
+            <if test="insttime != null">
+                and insttime = #{insttime}
+            </if>
+            <if test="chktime != null">
+                and chktime = #{chktime}
+            </if>
+            <if test="collhint != null">
+                and collhint = #{collhint}
+            </if>
+            <if test="collrint != null">
+                and collrint = #{collrint}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="collstat != null">
+                and collstat = #{collstat}
+            </if>
+            <if test="userid != null and userid != ''">
+                and userid = #{userid}
+            </if>
+            <if test="flowunit != null and flowunit != ''">
+                and flowunit = #{flowunit}
+            </if>
+            <if test="sumfunit != null and sumfunit != ''">
+                and sumfunit = #{sumfunit}
+            </if>
+            <if test="diffunit != null and diffunit != ''">
+                and diffunit = #{diffunit}
+            </if>
+            <if test="presunit != null and presunit != ''">
+                and presunit = #{presunit}
+            </if>
+            <if test="tempunit != null and tempunit != ''">
+                and tempunit = #{tempunit}
+            </if>
+            <if test="densunit != null and densunit != ''">
+                and densunit = #{densunit}
+            </if>
+            <if test="flowdot != null">
+                and flowdot = #{flowdot}
+            </if>
+            <if test="sumfdot != null">
+                and sumfdot = #{sumfdot}
+            </if>
+            <if test="diffdot != null">
+                and diffdot = #{diffdot}
+            </if>
+            <if test="presdot != null">
+                and presdot = #{presdot}
+            </if>
+            <if test="tempdot != null">
+                and tempdot = #{tempdot}
+            </if>
+            <if test="densdot != null">
+                and densdot = #{densdot}
+            </if>
+            <if test="dpzero != null">
+                and DPZERO = #{dpzero}
+            </if>
+            <if test="pzero != null">
+                and PZERO = #{pzero}
+            </if>
+            <if test="dpcut != null">
+                and DPCUT = #{dpcut}
+            </if>
+            <if test="flowmax != null">
+                and FLOWMAX = #{flowmax}
+            </if>
+            <if test="flowmin != null">
+                and FLOWMIN = #{flowmin}
+            </if>
+            <if test="owner != null and owner != ''">
+                and owner = #{owner}
+            </if>
+            <if test="chargeDay != null">
+                and charge_day = #{chargeDay}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="devaddr" useGeneratedKeys="true">
+        insert into pd.fthfldev(devname, porttype, colltype, baudrate, fcollect, compname, insttime, chktime, collhint,
+                                collrint, status, collstat, userid, flowunit, sumfunit, diffunit, presunit, tempunit,
+                                densunit, flowdot, sumfdot, diffdot, presdot, tempdot, densdot, DPZERO, PZERO, DPCUT,
+                                FLOWMAX, FLOWMIN, owner, charge_day)
+        values (#{devname}, #{porttype}, #{colltype}, #{baudrate}, #{fcollect}, #{compname}, #{insttime}, #{chktime},
+                #{collhint}, #{collrint}, #{status}, #{collstat}, #{userid}, #{flowunit}, #{sumfunit}, #{diffunit},
+                #{presunit}, #{tempunit}, #{densunit}, #{flowdot}, #{sumfdot}, #{diffdot}, #{presdot}, #{tempdot},
+                #{densdot}, #{dpzero}, #{pzero}, #{dpcut}, #{flowmax}, #{flowmin}, #{owner}, #{chargeDay})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="devaddr" useGeneratedKeys="true">
+        insert into pd.fthfldev(devname, porttype, colltype, baudrate, fcollect, compname, insttime, chktime, collhint,
+        collrint, status, collstat, userid, flowunit, sumfunit, diffunit, presunit, tempunit, densunit, flowdot,
+        sumfdot, diffdot, presdot, tempdot, densdot, DPZERO, PZERO, DPCUT, FLOWMAX, FLOWMIN, owner, charge_day)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.devname}, #{entity.porttype}, #{entity.colltype}, #{entity.baudrate}, #{entity.fcollect},
+            #{entity.compname}, #{entity.insttime}, #{entity.chktime}, #{entity.collhint}, #{entity.collrint},
+            #{entity.status}, #{entity.collstat}, #{entity.userid}, #{entity.flowunit}, #{entity.sumfunit},
+            #{entity.diffunit}, #{entity.presunit}, #{entity.tempunit}, #{entity.densunit}, #{entity.flowdot},
+            #{entity.sumfdot}, #{entity.diffdot}, #{entity.presdot}, #{entity.tempdot}, #{entity.densdot},
+            #{entity.dpzero}, #{entity.pzero}, #{entity.dpcut}, #{entity.flowmax}, #{entity.flowmin}, #{entity.owner},
+            #{entity.chargeDay})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="devaddr" useGeneratedKeys="true">
+        insert into pd.fthfldev(devname, porttype, colltype, baudrate, fcollect, compname, insttime, chktime, collhint,
+        collrint, status, collstat, userid, flowunit, sumfunit, diffunit, presunit, tempunit, densunit, flowdot,
+        sumfdot, diffdot, presdot, tempdot, densdot, DPZERO, PZERO, DPCUT, FLOWMAX, FLOWMIN, owner, charge_day)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.devname}, #{entity.porttype}, #{entity.colltype}, #{entity.baudrate}, #{entity.fcollect},
+            #{entity.compname}, #{entity.insttime}, #{entity.chktime}, #{entity.collhint}, #{entity.collrint},
+            #{entity.status}, #{entity.collstat}, #{entity.userid}, #{entity.flowunit}, #{entity.sumfunit},
+            #{entity.diffunit}, #{entity.presunit}, #{entity.tempunit}, #{entity.densunit}, #{entity.flowdot},
+            #{entity.sumfdot}, #{entity.diffdot}, #{entity.presdot}, #{entity.tempdot}, #{entity.densdot},
+            #{entity.dpzero}, #{entity.pzero}, #{entity.dpcut}, #{entity.flowmax}, #{entity.flowmin}, #{entity.owner},
+            #{entity.chargeDay})
+        </foreach>
+        on duplicate key update
+        devname = values(devname) , porttype = values(porttype) , colltype = values(colltype) , baudrate =
+        values(baudrate) , fcollect = values(fcollect) , compname = values(compname) , insttime = values(insttime) ,
+        chktime = values(chktime) , collhint = values(collhint) , collrint = values(collrint) , status = values(status)
+        , collstat = values(collstat) , userid = values(userid) , flowunit = values(flowunit) , sumfunit =
+        values(sumfunit) , diffunit = values(diffunit) , presunit = values(presunit) , tempunit = values(tempunit) ,
+        densunit = values(densunit) , flowdot = values(flowdot) , sumfdot = values(sumfdot) , diffdot = values(diffdot)
+        , presdot = values(presdot) , tempdot = values(tempdot) , densdot = values(densdot) , DPZERO = values(DPZERO) ,
+        PZERO = values(PZERO) , DPCUT = values(DPCUT) , FLOWMAX = values(FLOWMAX) , FLOWMIN = values(FLOWMIN) , owner =
+        values(owner) , charge_day = values(charge_day)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update pd.fthfldev
+        <set>
+            <if test="devname != null and devname != ''">
+                devname = #{devname},
+            </if>
+            <if test="porttype != null and porttype != ''">
+                porttype = #{porttype},
+            </if>
+            <if test="colltype != null and colltype != ''">
+                colltype = #{colltype},
+            </if>
+            <if test="baudrate != null and baudrate != ''">
+                baudrate = #{baudrate},
+            </if>
+            <if test="fcollect != null and fcollect != ''">
+                fcollect = #{fcollect},
+            </if>
+            <if test="compname != null and compname != ''">
+                compname = #{compname},
+            </if>
+            <if test="insttime != null">
+                insttime = #{insttime},
+            </if>
+            <if test="chktime != null">
+                chktime = #{chktime},
+            </if>
+            <if test="collhint != null">
+                collhint = #{collhint},
+            </if>
+            <if test="collrint != null">
+                collrint = #{collrint},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="collstat != null">
+                collstat = #{collstat},
+            </if>
+            <if test="userid != null and userid != ''">
+                userid = #{userid},
+            </if>
+            <if test="flowunit != null and flowunit != ''">
+                flowunit = #{flowunit},
+            </if>
+            <if test="sumfunit != null and sumfunit != ''">
+                sumfunit = #{sumfunit},
+            </if>
+            <if test="diffunit != null and diffunit != ''">
+                diffunit = #{diffunit},
+            </if>
+            <if test="presunit != null and presunit != ''">
+                presunit = #{presunit},
+            </if>
+            <if test="tempunit != null and tempunit != ''">
+                tempunit = #{tempunit},
+            </if>
+            <if test="densunit != null and densunit != ''">
+                densunit = #{densunit},
+            </if>
+            <if test="flowdot != null">
+                flowdot = #{flowdot},
+            </if>
+            <if test="sumfdot != null">
+                sumfdot = #{sumfdot},
+            </if>
+            <if test="diffdot != null">
+                diffdot = #{diffdot},
+            </if>
+            <if test="presdot != null">
+                presdot = #{presdot},
+            </if>
+            <if test="tempdot != null">
+                tempdot = #{tempdot},
+            </if>
+            <if test="densdot != null">
+                densdot = #{densdot},
+            </if>
+            <if test="dpzero != null">
+                DPZERO = #{dpzero},
+            </if>
+            <if test="pzero != null">
+                PZERO = #{pzero},
+            </if>
+            <if test="dpcut != null">
+                DPCUT = #{dpcut},
+            </if>
+            <if test="flowmax != null">
+                FLOWMAX = #{flowmax},
+            </if>
+            <if test="flowmin != null">
+                FLOWMIN = #{flowmin},
+            </if>
+            <if test="owner != null and owner != ''">
+                owner = #{owner},
+            </if>
+            <if test="chargeDay != null">
+                charge_day = #{chargeDay},
+            </if>
+        </set>
+        where devaddr = #{devaddr}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from pd.fthfldev
+        where devaddr = #{devaddr}
+    </delete>
+
+</mapper>
+

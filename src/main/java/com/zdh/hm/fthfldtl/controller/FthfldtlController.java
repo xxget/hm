@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 /**
- * (Fthfldtl)表控制层
+ * (Fthfldtl)设备信息报文流水表控制层
  *
  * @author xxg
  * @since 2021-02-23 11:14:12

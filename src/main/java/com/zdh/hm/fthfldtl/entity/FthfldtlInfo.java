@@ -11,7 +11,10 @@ import java.util.Date;
  */
 public class FthfldtlInfo implements Serializable {
     private static final long serialVersionUID = -87747681728346584L;
-
+    /**
+     * 所在设施名称
+    */
+    private String devname;
     /**
      * 抄表时间
      */
@@ -214,4 +217,16 @@ public class FthfldtlInfo implements Serializable {
         this.warninfo = warninfo;
     }
 
+    /**
+     * 获取所在设施名称
+    **/
+    public String getDevname() {
+        return devname;
+    }
+    /**
+     * 设置所在设施名称
+     **/
+    public void setDevname(String devname) {
+        this.devname = devname;
+    }
 }

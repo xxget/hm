@@ -20,4 +20,8 @@ spring:
 #  application:
 #    name: microservice-provider
 
+# 用于雪花算法生成id
+application:
+  datacenterId: 2
+  workerId: 1
 
